@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24506" systemVersion="24E248" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Schedule" representedClassName="Schedule" syncable="YES" codeGenerationType="manual" module="check">
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="memo" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="startTime" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+    </entity>
+</model>

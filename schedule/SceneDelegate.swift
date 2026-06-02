@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  check
+//  schedule
 //
-//  Created by 문현서 on 5/27/26.
+//  Created by 문현서 on 6/2/26.
 //
 
 import UIKit
@@ -13,13 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        let rootViewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        window.rootViewController = navigationController
-        self.window = window
-        window.makeKeyAndVisible()
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -45,8 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        CoreDataStack.shared.saveContext()
+        // Called as the scene transitions from the foreground to the background.
+        // Use this method to save data, release shared resources, and store enough scene-specific state information
+        // to restore the scene back to its current state.
     }
 
 
 }
+
