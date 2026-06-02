@@ -17,6 +17,11 @@ final class CalendarViewController: UIViewController {
         reloadMonth()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     private func setupCollectionView() {
         collectionView.register(CalendarDayCell.self, forCellWithReuseIdentifier: CalendarDayCell.reuseIdentifier)
         collectionView.dataSource = self
