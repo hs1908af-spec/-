@@ -88,7 +88,7 @@
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAL-COLLECTION">
-                                <rect key="frame" x="16" y="136" width="343" height="642"/>
+                                <rect key="frame" x="16" y="136" width="343" height="288"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="CAL-FLOW">
                                     <size key="itemSize" width="40" height="48"/>
@@ -97,6 +97,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
+                            <label opaque="NO" contentMode="left" text="날짜" textAlignment="left" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAL-SELECTED-LABEL">
+                                <rect key="frame" x="16" y="436" width="343" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAL-PLANS-TABLE">
+                                <rect key="frame" x="16" y="466" width="343" height="330"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CAL-SAFE"/>
                         <constraints>
@@ -112,13 +120,24 @@
                             <constraint firstItem="CAL-COLLECTION" firstAttribute="top" secondItem="CAL-WEEKDAY-STACK" secondAttribute="bottom" constant="8" id="CAL-COLLECTION-TOP"/>
                             <constraint firstItem="CAL-COLLECTION" firstAttribute="leading" secondItem="CAL-SAFE" secondAttribute="leading" constant="16" id="CAL-COLLECTION-LEAD"/>
                             <constraint firstItem="CAL-SAFE" firstAttribute="trailing" secondItem="CAL-COLLECTION" secondAttribute="trailing" constant="16" id="CAL-COLLECTION-TRAIL"/>
-                            <constraint firstItem="CAL-SAFE" firstAttribute="bottom" secondItem="CAL-COLLECTION" secondAttribute="bottom" constant="16" id="CAL-COLLECTION-BOTTOM"/>
+                            <constraint firstItem="CAL-COLLECTION" firstAttribute="height" constant="288" id="CAL-COLLECTION-HEIGHT"/>
+
+                            <constraint firstItem="CAL-SELECTED-LABEL" firstAttribute="top" secondItem="CAL-COLLECTION" secondAttribute="bottom" constant="12" id="CAL-SELECTED-TOP"/>
+                            <constraint firstItem="CAL-SELECTED-LABEL" firstAttribute="leading" secondItem="CAL-SAFE" secondAttribute="leading" constant="16" id="CAL-SELECTED-LEAD"/>
+                            <constraint firstItem="CAL-SAFE" firstAttribute="trailing" secondItem="CAL-SELECTED-LABEL" secondAttribute="trailing" constant="16" id="CAL-SELECTED-TRAIL"/>
+
+                            <constraint firstItem="CAL-PLANS-TABLE" firstAttribute="top" secondItem="CAL-SELECTED-LABEL" secondAttribute="bottom" constant="8" id="CAL-PLANS-TOP"/>
+                            <constraint firstItem="CAL-PLANS-TABLE" firstAttribute="leading" secondItem="CAL-SAFE" secondAttribute="leading" constant="16" id="CAL-PLANS-LEAD"/>
+                            <constraint firstItem="CAL-SAFE" firstAttribute="trailing" secondItem="CAL-PLANS-TABLE" secondAttribute="trailing" constant="16" id="CAL-PLANS-TRAIL"/>
+                            <constraint firstItem="CAL-SAFE" firstAttribute="bottom" secondItem="CAL-PLANS-TABLE" secondAttribute="bottom" constant="16" id="CAL-PLANS-BOTTOM"/>
                         </constraints>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="CAL-COLLECTION" id="CAL-COLLECTION-OUTLET"/>
                         <outlet property="monthLabel" destination="CAL-MONTH-LABEL" id="CAL-MONTH-OUTLET"/>
+                        <outlet property="plansTableView" destination="CAL-PLANS-TABLE" id="CAL-PLANS-OUTLET"/>
+                        <outlet property="selectedDateLabel" destination="CAL-SELECTED-LABEL" id="CAL-SELECTED-OUTLET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAL-RESP" sceneMemberID="firstResponder"/>
