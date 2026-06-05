@@ -114,4 +114,10 @@ extension DayPlansViewController: PlanEditViewControllerDelegate {
         reloadPlans()
         viewController.dismiss(animated: true)
     }
+
+    func planEditViewController(_ viewController: PlanEditViewController, didDelete plan: Plan) {
+        planStore.delete(id: plan.id)
+        reloadPlans()
+        viewController.dismiss(animated: true)
+    }
 }

@@ -2,6 +2,7 @@ import UIKit
 
 protocol PlanEditViewControllerDelegate: AnyObject {
     func planEditViewController(_ viewController: PlanEditViewController, didSave plan: Plan)
+    func planEditViewController(_ viewController: PlanEditViewController, didDelete plan: Plan)
 }
 
 final class PlanEditViewController: UIViewController {
@@ -20,7 +21,13 @@ final class PlanEditViewController: UIViewController {
 
     private func setupNavigationItems() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(didTapCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(didTapSave))
+        let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(didTapSave))
+        if planToEdit != nil {
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDelete))
+            navigationItem.rightBarButtonItems = [saveButton, deleteButton]
+        } else {
+            navigationItem.rightBarButtonItem = saveButton
+        }
     }
 
     private func setupTextView() {
@@ -51,5 +58,16 @@ final class PlanEditViewController: UIViewController {
             createdAt: planToEdit?.createdAt ?? Date()
         )
         delegate?.planEditViewController(self, didSave: plan)
+    }
+
+    @objc private func didTapDelete() {
+        guard let plan = planToEdit else { return }
+        let alert = UIAlertController(title: "계획을 삭제할까요?", message: "삭제하면 복구할 수 없습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        alert.addAction(UIAlertAction(title: "삭제", style: .destructive) { [weak self] _ in
+            guard let self else { return }
+            delegate?.planEditViewController(self, didDelete: plan)
+        })
+        present(alert, animated: true)
     }
 }

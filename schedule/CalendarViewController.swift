@@ -18,6 +18,8 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "일정"
+        selectedDate = Date()
+        currentMonth = DateHelpers.startOfMonth(for: selectedDate)
         setupCollectionView()
         setupPlansTableView()
         setupNavigationItems()
@@ -216,6 +218,12 @@ extension CalendarViewController: UITableViewDelegate {
 extension CalendarViewController: PlanEditViewControllerDelegate {
     func planEditViewController(_ viewController: PlanEditViewController, didSave plan: Plan) {
         planStore.upsert(plan)
+        reloadPlans()
+        viewController.dismiss(animated: true)
+    }
+
+    func planEditViewController(_ viewController: PlanEditViewController, didDelete plan: Plan) {
+        planStore.delete(id: plan.id)
         reloadPlans()
         viewController.dismiss(animated: true)
     }
