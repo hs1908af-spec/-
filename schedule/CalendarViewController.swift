@@ -196,7 +196,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - 📋 UITableView 데이터 및 인터랙션 프로토콜 구현 (하단 계획 리스트)
 extension CalendarViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         plans.count
     }
     
